@@ -1,6 +1,7 @@
 package com.idv.texteditor;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.View;
@@ -56,6 +57,8 @@ public class CustomTextView {
             public void onClick(View v) {
                 if (selectedViews > 0) {
                     v.setBackgroundResource(R.drawable.lostfocus_background);
+                    selectedViews = 0;
+                    CustomTextView.this.isSelected = false;
                 }
             }
         });
@@ -76,12 +79,60 @@ public class CustomTextView {
             @Override
             public void onClick(View v) {
                 if (CustomTextView.this.isSelected) {
-                    if (CustomTextView.this.isBold == false) {
-                        CustomTextView.this.currentTextView.setTypeface(null, Typeface.BOLD);
+                    if (!CustomTextView.this.isBold) {
+                        if (CustomTextView.this.isItalic)
+                            CustomTextView.this.currentTextView.setTypeface(null, Typeface.BOLD_ITALIC);
+                        else
+                            CustomTextView.this.currentTextView.setTypeface(null, Typeface.BOLD);
+
                         CustomTextView.this.isBold = true;
                     } else {
-                        CustomTextView.this.currentTextView.setTypeface(null, Typeface.NORMAL);
+                        if (CustomTextView.this.isItalic)
+                            CustomTextView.this.currentTextView.setTypeface(null, Typeface.ITALIC);
+                        else
+                            CustomTextView.this.currentTextView.setTypeface(null, Typeface.NORMAL);
+
                         CustomTextView.this.isBold = false;
+                    }
+                }
+            }
+        });
+
+        italic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CustomTextView.this.isSelected) {
+                    if (!CustomTextView.this.isItalic) {
+                        if (CustomTextView.this.isBold)
+                            CustomTextView.this.currentTextView.setTypeface(null, Typeface.BOLD_ITALIC);
+                        else
+                            CustomTextView.this.currentTextView.setTypeface(null, Typeface.ITALIC);
+
+                        CustomTextView.this.isItalic = true;
+                    } else {
+                            if (CustomTextView.this.isBold)
+                                CustomTextView.this.currentTextView.setTypeface(null, Typeface.BOLD);
+                            else
+                                CustomTextView.this.currentTextView.setTypeface(null, Typeface.NORMAL);
+
+                        CustomTextView.this.isItalic = false;
+                    }
+                }
+            }
+        });
+
+        underline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!CustomTextView.this.isSelected) {
+                    if (!CustomTextView.this.isUnderline) {
+                        CustomTextView.this.currentTextView.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+                        CustomTextView.this.isUnderline = true;
+                    }
+                    else {
+                        int currentPaintFlags = CustomTextView.this.currentTextView.getPaintFlags();
+                        int newPaintFlags = currentPaintFlags & ~Paint.STRIKE_THRU_TEXT_FLAG;
+                        CustomTextView.this.currentTextView.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
                     }
                 }
             }
