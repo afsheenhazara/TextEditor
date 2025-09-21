@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         addText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomTextView obj = new CustomTextView(MainActivity.this, constraintLayout);
+                CustomTextView obj = new CustomTextView(MainActivity.this, constraintLayout, changeFont, plusButton, textSize, minusButton, bold, italic, underline, alignment);
             }
         });
     }
