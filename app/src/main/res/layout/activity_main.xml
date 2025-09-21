@@ -22,11 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-<!--        <SurfaceView-->
-<!--            android:id="@+id/surfaceView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="@drawable/surface_view_background"/>-->
     </androidx.cardview.widget.CardView>
 
     <LinearLayout

@@ -45,51 +45,8 @@ public class MainActivity extends AppCompatActivity {
         addText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView newText = new TextView(MainActivity.this);
-                newText.setText("NEW TEXT");
-                newText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-
-                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
-                        ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                        ConstraintLayout.LayoutParams.WRAP_CONTENT
-                );
-                params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-                params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
-                params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
-                params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-
-                newText.setLayoutParams(params);
-                constraintLayout.addView(newText);
-
+                CustomTextView obj = new CustomTextView(MainActivity.this, constraintLayout);
             }
         });
-
-        /*
-        surfaceView = findViewById(R.id.surfaceView);
-
-        SurfaceHolder sholder = surfaceView.getHolder();
-
-        sholder.addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(@NonNull SurfaceHolder holder) {
-                addText.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        TextView newText = createNewText();
-
-                    }
-                });
-            }
-
-            @Override
-            public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
-
-            }
-
-            @Override
-            public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
-
-            }
-        }); */
     }
 }
